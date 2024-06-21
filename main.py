@@ -1,9 +1,4 @@
-# текстовую боевую игру, где игрок и компьютер управляют героями с различными характеристиками.
-# Игра состоит из раундов, в каждом раунде игроки по очереди наносят урон друг другу,
-# пока у одного из героев не закончится здоровье.
-# # Требования:
-# # Используйте ООП (Объектно-Ориентированное Программирование) для создания классов героев.
-# # Игра должна быть реализована как консольное приложение.
+#
 
 class Hero:
     def __init__(self, name):
@@ -13,7 +8,7 @@ class Hero:
 
     def attack(self, other):
         other.health -= self.attack_power
-        return other.health
+        return print(other.name, "осталось", other.health, "жизней")
 
     def is_alive(self):
         if self.health > 0:
@@ -28,7 +23,25 @@ class Game:
         self.computer = Hero("Computer")
 
     def start(self):
-        self.player.attack()
+        while True:
+            print(self.player.name, "атакует")
+            self.player.attack(self.computer)
+            if self.computer.is_alive() == False:
+                print(self.player.name, "победил!")
+                break
+            print(self.computer.name, "атакует")
+            self.computer.attack(self.player)
+            if self.player.is_alive() == False:
+                print(self.computer.name, "победил!")
+                break
+
+
+g = Game()
+
+g.start()
+
+
+
 
 
 
